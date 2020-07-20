@@ -26,9 +26,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@ApiOperation(value = "登录", notes = "根据用户名和密码获取用户认证，认证成功后返回token")
+	@ApiOperation(value = "登录", notes = "根据账号和密码获取用户认证，认证成功后返回token")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "username", value = "账号/邮箱", required = true, dataType = "String", paramType = "query"),
+		@ApiImplicitParam(name = "username", value = "账号", required = true, dataType = "String", paramType = "query"),
 		@ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String", paramType = "query"),
 	})
 	@PostMapping("/login")
