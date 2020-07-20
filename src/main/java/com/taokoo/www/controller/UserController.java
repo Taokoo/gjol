@@ -35,5 +35,25 @@ public class UserController {
 	public Result login(HttpServletRequest request,String username,String password) {
 		return userService.login(username,password);
 	}
-
+	
+	@ApiOperation(value = "验证邮箱", notes = "往指定邮箱发送验证码")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "mail", value = "邮箱", required = true, dataType = "String", paramType = "query"),
+	})
+	@PostMapping("/sendMail")
+	public Result sendMail(HttpServletRequest request,String mail) {
+		return userService.sendMail(mail);
+	}
+	
+	@ApiOperation(value = "注册", notes = "注册账号")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "username", value = "账号", required = true, dataType = "String", paramType = "query"),
+		@ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String", paramType = "query"),
+		@ApiImplicitParam(name = "mail", value = "邮箱", required = true, dataType = "String", paramType = "query"),
+		@ApiImplicitParam(name = "code", value = "验证码", required = true, dataType = "Integer", paramType = "query"),
+	})
+	@PostMapping("/register")
+	public Result register(HttpServletRequest request,String username,String password,String mail,Integer code) {
+		return userService.register(username,password,mail,code);
+	}
 }
