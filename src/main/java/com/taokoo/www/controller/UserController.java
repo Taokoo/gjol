@@ -15,7 +15,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * @ClassName: UserController  
+ * @Description: 用户管理Controller
+ * @author Taokoo
+ * @date 2020-7-20
+ */
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/user")
