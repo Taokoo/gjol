@@ -11,18 +11,21 @@ import lombok.Data;
 /**
  * user
  * @author Taokoo
- * @version 1.0.0 2020-07-03
+ * @version 1.0.0 2020-07-20
  */
 @Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
-    /** id */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String password;
-    private Boolean active;
+    private String qq;
+    private String wx;
+    private String mail;
+    private String phone;
+    private Boolean active;//在线状态
 }
