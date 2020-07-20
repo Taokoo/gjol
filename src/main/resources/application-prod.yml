@@ -1,0 +1,6 @@
+logging:
+  config: classpath:logback.xml
+
+server:
+  port: 8080
+  contextPath: /homepage_api
