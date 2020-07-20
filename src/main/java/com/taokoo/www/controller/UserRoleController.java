@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020-7-20
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/role")
 @CrossOrigin
 @Slf4j
 public class UserRoleController {
