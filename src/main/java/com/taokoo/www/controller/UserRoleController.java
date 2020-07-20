@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.taokoo.www.annotation.Authentication;
 import com.taokoo.www.annotation.CurrentUser;
 import com.taokoo.www.domain.AuthenticatedUser;
 import com.taokoo.www.domain.vo.Result;
 import com.taokoo.www.service.UserRoleService;
-
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
