@@ -20,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 自定义拦截器，判断此次请求是否有权限
  */
+@SuppressWarnings("unused")
 @Component
 @Slf4j
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
