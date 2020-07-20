@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.taokoo.www.interceptor.AuthenticationInterceptor;
 import com.taokoo.www.resolvers.CurrentUserMethodArgumentResolver;
 
+
 /**
  * 配置类，增加自定义拦截器和解析器
  */

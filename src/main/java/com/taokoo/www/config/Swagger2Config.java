@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@Profile("dev")
+@Profile("taokoo")
 public class Swagger2Config {
 
     @Bean
@@ -26,16 +26,16 @@ public class Swagger2Config {
                 .ignoredParameterTypes(CurrentUser.class)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.landfun.www.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.taokoo.www.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("这是一个伟大的API文档")
-                .description("不忘初心，牢记使命")
-                .contact("靠脸吃饭的后端程序猿")
+                .title("古剑奇谭玩家社区API文档")
+                .description("一给我里giao giao giao")
+                .contact("Taokoo")
                 .version("4.0")
                 .build();
     }

@@ -23,5 +23,6 @@ public class LoginRecord {
     private Integer id;
 
     private Integer userId;
+    
     private Date time;//登录时间
 }

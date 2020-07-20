@@ -12,8 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @ClassName: User  
- * @Description: 账号
+ * @ClassName: Mastery  
+ * @Description: 专精
  * @author Taokoo
  * @date 2020-7-20
  */
@@ -22,25 +22,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class Mastery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    private String username;
-    
-    private String password;
-    
-    private String qq; 
-    
-    private String wx;
-    
-    private String mail;
-    
-    private String phone;
-    
-    private String signature;//个性签名
-    
-    private Boolean active;//在线状态
+    private String value;
 }
