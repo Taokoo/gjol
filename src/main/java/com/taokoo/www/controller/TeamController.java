@@ -60,4 +60,15 @@ public class TeamController {
 	public Result updateTeam(@CurrentUser AuthenticatedUser authenticatedUser,Integer id,String name,String introduce,Integer status,Boolean isPublic,Integer roleId) {
 		return teamService.update(id, name, introduce, status, isPublic, roleId);
 	}
+	
+	@ApiOperation(value = "查看固定团成员列表")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+			@ApiImplicitParam(name = "teamId", value = "固定团id", required = true, dataType = "Integer", paramType = "header"),
+			})
+	@PostMapping("/getRoleLst")
+	@Authentication
+	public Result getRoleLst(@CurrentUser AuthenticatedUser authenticatedUser,Integer teamId) {
+		return teamService.getRoleLst(teamId);
+	}
 }

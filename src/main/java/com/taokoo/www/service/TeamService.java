@@ -56,7 +56,7 @@ public class TeamService {
 	 * @param @return 
 	 * @author Taokoo
 	 */
-	public Result getLst(Integer teamId) {
+	public Result getRoleLst(Integer teamId) {
 		return Result.success(userRoleDao.findByTeam(teamId));
 	}
 	
