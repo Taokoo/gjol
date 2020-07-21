@@ -29,4 +29,6 @@ public class Sects {
     private Integer id;
     
     private String value;
+    
+    private String color;
 }
