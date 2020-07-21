@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.taokoo.www.dao.mysql.UserRoleDao;
 import com.taokoo.www.domain.po.Camp;
@@ -17,7 +18,8 @@ public class UserRoleService {
 	@Autowired
 	private UserRoleDao userRoleDao;
 	
-	public Result addRole(Integer userId, String name, Integer regionId,Integer campId,Integer professionId,Integer equipLv,Boolean isBig,Boolean isPublic) {
+	@Transactional(rollbackFor = Exception.class)
+	public Result addRole(Integer userId, String name, Integer regionId,Integer campId,Integer professionId,Integer equipLv,Boolean isPublic,Integer type) {
 		List<UserRole> lst = userRoleDao.findByNameAndRegion(name,regionId);
 		if(lst.size() > 0)return Result.fail("此角色已存在");
 		UserRole ur = new UserRole();
@@ -32,7 +34,7 @@ public class UserRoleService {
 		pf.setId(professionId);
 		ur.setProfession(pf);
 		ur.setEquipLv(equipLv);
-		ur.setIsBig(isBig);
+		ur.setType(type);
 		ur.setIsPublic(isPublic);
 		
 		userRoleDao.save(ur);

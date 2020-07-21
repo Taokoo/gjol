@@ -58,11 +58,11 @@ public class UserRole {
     
     private Integer equipLv;//装等
     
-    private Boolean isBig;//是否大号
+    private Integer type;//1：大号   2：小号
     
     private Boolean isPublic;//是否公开信息（不公开则无法在广场上看到）
     
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
     private Team team;//所在固定团
     

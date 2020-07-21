@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.taokoo.www.dao.mysql.LoginRecordDao;
 import com.taokoo.www.dao.mysql.UserDao;
 import com.taokoo.www.domain.po.LoginRecord;
@@ -47,6 +49,7 @@ public class UserService {
 		return Result.success(code);
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
 	public Result register(String username,String password,String mail,Integer code) {
 		List<User> lst = userDao.findByUsername(username);
 		if(lst.size() > 0) return Result.fail("该账号已被注册");

@@ -23,6 +23,6 @@ logging:
   config: classpath:logback.xml
 
 server:
-  port: 8081
+  port: 8868
   contextPath: /gjol
 host-name: taokoo

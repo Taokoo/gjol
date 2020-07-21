@@ -39,12 +39,12 @@ public class UserRoleController {
 			@ApiImplicitParam(name = "campId", value = "阵营id", required = true, dataType = "Integer", paramType = "query"), 
 			@ApiImplicitParam(name = "professionId", value = "职业id", required = true, dataType = "Integer", paramType = "query"), 
 			@ApiImplicitParam(name = "equipLv", value = "装等", required = true, dataType = "Integer", paramType = "query"),
-			@ApiImplicitParam(name = "isBig", value = "是否大号", required = true, dataType = "Boolean", paramType = "query"),
 			@ApiImplicitParam(name = "isPublic", value = "是否公开信息", required = true, dataType = "Boolean", paramType = "query"),
+			@ApiImplicitParam(name = "type", value = "1：大号   2：小号", required = true, dataType = "Integer", paramType = "query"),
 			})
 	@PostMapping("/addRole")
 	@Authentication
-	public Result addRole(@CurrentUser AuthenticatedUser authenticatedUser, String name, Integer regionId,Integer campId,Integer professionId,Integer equipLv,Boolean isBig,Boolean isPublic) {
-		return userRoleService.addRole(authenticatedUser.getUserId(), name, regionId, campId, professionId, equipLv, isBig, isPublic);
+	public Result addRole(@CurrentUser AuthenticatedUser authenticatedUser, String name, Integer regionId,Integer campId,Integer professionId,Integer equipLv,Boolean isPublic,Integer type) {
+		return userRoleService.addRole(authenticatedUser.getUserId(), name, regionId, campId, professionId, equipLv, isPublic,type);
 	}
 }
