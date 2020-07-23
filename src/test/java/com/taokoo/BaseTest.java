@@ -1,4 +1,4 @@
-package com.taokoo.www;
+package com.taokoo;
 
 import org.junit.After;
 import org.junit.Before;
