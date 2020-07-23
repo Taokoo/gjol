@@ -1,4 +1,4 @@
-package cn.landfun.www;
+package com.taokoo.www;
 
 import org.junit.After;
 import org.junit.Before;
