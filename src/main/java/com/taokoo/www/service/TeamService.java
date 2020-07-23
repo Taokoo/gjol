@@ -26,6 +26,10 @@ public class TeamService {
 	@Autowired
 	private RoleForTeamDao roleForTeamDao;
 
+	/**
+ 	  * 创建固定团
+	 * @author Taokoo
+	 */
 	public Result add(String name, String introduce, Integer roleId) {
 		Team t = new Team();
 		t.setName(name);
@@ -37,9 +41,13 @@ public class TeamService {
 		ur.setId(roleId);
 		t.setTeamLeader(ur);
 		teamDao.save(t);
-		return Result.success("保存成功");
+		return Result.success("固定团创建成功");
 	}
 	
+	/**
+	   * 修改固定团信息
+	 * @author Taokoo
+	 */
 	public Result update(Integer id, String name, String introduce, Integer status, Boolean isPublic, Integer roleId) {
 		List<Team> lst = teamDao.findById(id);
 		if (lst.size() == 0)return Result.fail("未知错误");
@@ -52,14 +60,12 @@ public class TeamService {
 		ur.setId(roleId);
 		t.setTeamLeader(ur);
 		teamDao.saveAndFlush(t);
-		return Result.success("修改成功");
+		return Result.success("固定团信息更新成功");
 	}
 	
 	/**
 	  * 获取固定团成员列表
 	 * @Title: getLst  
-	 * @param @param teamId
-	 * @param @return 
 	 * @author Taokoo
 	 */
 	public Result getRoleLst(Integer teamId) {
@@ -69,8 +75,6 @@ public class TeamService {
 	/**
 	  * 固定团添加成员
 	 * @Title: addRole  
-	 * @param @param roleId
-	 * @param @param teamId
 	 * @author Taokoo
 	 */
 	public Result addRole(Integer roleId,Integer teamId) {
@@ -92,8 +96,6 @@ public class TeamService {
 	/**
 	  * 固定团移除成员
 	 * @Title: delRole  
-	 * @param @param roleId
-	 * @param @param teamId
 	 * @author Taokoo
 	 */
 	public Result delRole(Integer roleId,Integer teamId) {
