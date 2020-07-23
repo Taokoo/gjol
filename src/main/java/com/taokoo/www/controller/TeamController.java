@@ -63,10 +63,32 @@ public class TeamController {
 	@ApiOperation(value = "查看固定团成员列表")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
-			@ApiImplicitParam(name = "teamId", value = "固定团id", required = true, dataType = "Integer", paramType = "header"), })
+			@ApiImplicitParam(name = "teamId", value = "固定团id", required = true, dataType = "Integer", paramType = "query"), })
 	@PostMapping("/getRoleLst")
 	@Authentication
 	public Result getRoleLst(@CurrentUser AuthenticatedUser authenticatedUser, Integer teamId) {
 		return teamService.getRoleLst(teamId);
+	}
+	
+	@ApiOperation(value = "固定团添加成员")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+			@ApiImplicitParam(name = "teamId", value = "固定团id", required = true, dataType = "Integer", paramType = "query"), 
+			@ApiImplicitParam(name = "roleId", value = "角色id", required = true, dataType = "Integer", paramType = "query"), })
+	@PostMapping("/teamAddRole")
+	@Authentication
+	public Result teamAddRole(@CurrentUser AuthenticatedUser authenticatedUser, Integer teamId, Integer roleId) {
+		return teamService.addRole(roleId, teamId);
+	}
+	
+	@ApiOperation(value = "固定团移除成员")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+			@ApiImplicitParam(name = "teamId", value = "固定团id", required = true, dataType = "Integer", paramType = "query"), 
+			@ApiImplicitParam(name = "roleId", value = "角色id", required = true, dataType = "Integer", paramType = "query"), })
+	@PostMapping("/teamDelRole")
+	@Authentication
+	public Result teamDelRole(@CurrentUser AuthenticatedUser authenticatedUser, Integer teamId, Integer roleId) {
+		return teamService.delRole(roleId, teamId);
 	}
 }
