@@ -68,9 +68,9 @@ public class UserRoleService {
 		rfp.setProfession(pf);
 		
 		userRoleDao.save(ur);
-		roleForRegionDao.save(rfr);
-		roleForCampDao.save(rfc);
-		roleForProfessionDao.save(rfp);
+		roleForRegionDao.save(rfr);//区服
+		roleForCampDao.save(rfc);//阵营
+		roleForProfessionDao.save(rfp);//职业
 		
 		return Result.success("添加成功");
 	}
