@@ -1,16 +1,10 @@
 package com.taokoo.www.domain.po;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -36,35 +30,24 @@ public class UserRole {
     
     private String name;
     
-    @ManyToOne
-    @JsonIgnore
-    private User user;
-    
-    @OneToOne
-    @JsonIgnore
-    private Region Region;//区服
-    
-    @OneToOne
-    @JsonIgnore
-    private Camp camp;//阵营
-    
-    @OneToOne
-    @JsonIgnore
-    private Profession profession;//职业
-    
-    @OneToMany
-    @JsonIgnore
-    private List<Mastery> mastery;//专精
-    
     private Integer equipLv;//装等
     
     private Integer type;//1：大号   2：小号
     
     private Boolean isPublic;//是否公开信息（不公开则无法在广场上看到）
     
-    @ManyToOne
-    @JsonIgnore
-    private Team team;//所在固定团
-    
     private Boolean isLeader;//是否团长
+    
+//  private Integer teamId;//所在固定团
+    
+//  private User user;
+    
+//  private Integer RegionId;//区服
+//  
+//  private Integer campId;//阵营
+//  
+//  private Integer professionId;//职业
+//  
+//  private Integer masteryId;//专精
+    
 }

@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -43,6 +42,5 @@ public class Team {
     private Boolean isPublic;//是否公开信息（不公开则无法在广场上看到
     
     @OneToOne
-    @JsonIgnore
     private UserRole teamLeader;//团长
 }

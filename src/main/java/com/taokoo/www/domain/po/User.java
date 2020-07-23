@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -30,7 +31,14 @@ public class User {
     
     private String username;
     
+    @JsonIgnore
     private String password;
+    
+    private String nickname;//昵称
+    
+    private Integer age;
+    
+    private Integer sex;//1：男  2：女
     
     private String qq; 
     
@@ -40,7 +48,11 @@ public class User {
     
     private String phone;
     
-    private String signature;//个性签名
+    private String signature;//签名
     
-    private Boolean active;//在线状态
+    private Integer active;//在线状态 0：离线   1：在线
+    
+    private Integer type;//账号类型: 1:普通用户   2： vip用户  66：管理员  99：超级管理员
+    
+    private Integer status;//账号状态 1:正常   99：封禁
 }

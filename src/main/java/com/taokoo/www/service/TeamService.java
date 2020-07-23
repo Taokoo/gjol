@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.taokoo.www.dao.mysql.RoleForTeamDao;
 import com.taokoo.www.dao.mysql.TeamDao;
 import com.taokoo.www.dao.mysql.UserRoleDao;
+import com.taokoo.www.domain.po.RoleForTeam;
 import com.taokoo.www.domain.po.Team;
 import com.taokoo.www.domain.po.UserRole;
 import com.taokoo.www.domain.vo.Result;
@@ -18,7 +20,11 @@ public class TeamService {
 	@Autowired
 	private TeamDao teamDao;
 	
+	@Autowired
 	private UserRoleDao userRoleDao;
+	
+	@Autowired
+	private RoleForTeamDao roleForTeamDao;
 
 	public Result add(String name, String introduce, Integer roleId) {
 		Team t = new Team();
@@ -57,7 +63,7 @@ public class TeamService {
 	 * @author Taokoo
 	 */
 	public Result getRoleLst(Integer teamId) {
-		return Result.success(userRoleDao.findByTeam(teamId));
+		return Result.success(roleForTeamDao.findByTeamId(teamId));
 	}
 	
 	/**
@@ -73,8 +79,13 @@ public class TeamService {
 		UserRole ur = lst.get(0);
 		List<Team> list = teamDao.findById(teamId);
 		if(list.size() == 0)return Result.fail("没有找到对应的固定团");
-		ur.setTeam(list.get(0));
+		RoleForTeam rt = new RoleForTeam();
+		rt.setUserRole(ur);
+		rt.setTeam(list.get(0));
+		
 		userRoleDao.saveAndFlush(ur);
+		roleForTeamDao.save(rt);
+		
 		return Result.success("添加成功");
 	}
 	
@@ -89,8 +100,14 @@ public class TeamService {
 		List<UserRole> lst = userRoleDao.findById(roleId);
 		if(lst.size() == 0)return Result.fail("没有找到对应的角色");
 		UserRole ur = lst.get(0);
-		ur.setTeam(null);
+		RoleForTeam rt = new RoleForTeam();
+		rt.setUserRole(ur);
+		Team team = new Team();
+		team.setId(teamId);
+		rt.setTeam(team);
+		
 		userRoleDao.saveAndFlush(ur);
+		roleForTeamDao.delete(rt);
 		return Result.success("移除成功");
 	}
 	
