@@ -1,5 +1,6 @@
 package com.taokoo.www.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class UserRoleService {
 		ur.setEquipLv(equipLv);
 		ur.setType(type);
 		ur.setIsPublic(isPublic);
+		ur.setCreateTime(new Date());
 		
 		RoleForRegion rfr = new RoleForRegion();
 		rfr.setUserRole(ur);

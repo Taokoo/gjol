@@ -1,5 +1,7 @@
 package com.taokoo.www.domain.po;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -55,4 +57,7 @@ public class User {
     private Integer type;//账号类型: 1:普通用户   2： vip用户  66：管理员  99：超级管理员
     
     private Integer status;//账号状态 1:正常   99：封禁
+    
+    @JsonIgnore
+    private Date createTime;//创建时间
 }

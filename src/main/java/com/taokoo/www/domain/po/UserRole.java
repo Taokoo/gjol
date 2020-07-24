@@ -1,10 +1,13 @@
 package com.taokoo.www.domain.po;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -38,16 +41,7 @@ public class UserRole {
     
     private Boolean isLeader;//是否团长
     
-//  private Integer teamId;//所在固定团
-    
-//  private User user;
-    
-//  private Integer RegionId;//区服
-//  
-//  private Integer campId;//阵营
-//  
-//  private Integer professionId;//职业
-//  
-//  private Integer masteryId;//专精
+    @JsonIgnore
+    private Date createTime;//创建时间
     
 }
