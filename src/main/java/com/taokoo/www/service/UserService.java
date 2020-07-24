@@ -52,7 +52,7 @@ public class UserService {
 //TODO 验证码发送测试期间关闭			MailUtil.sendMail(mail, "您的验证码是：" + code + "，验证码3分钟内有效", "古剑奇谭网络版玩家社区注册验证码");
 			tokenService.set(mail, code);//验证码存入缓存
 			tokenService.expire(mail, 180);//设置3分钟过期时间
-			return Result.success(code);
+			return Result.success("验证码发送成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.fail("服务器异常");
@@ -63,8 +63,8 @@ public class UserService {
 	public Result register(String username,String password,String mail,Integer code) {
 		List<User> lst = userDao.findByUsername(username);
 		if(lst.size() > 0) return Result.fail("该账号已被注册");
-		Integer vCode = Integer.valueOf((String)tokenService.get(mail));
-		if(vCode != code)return Result.fail("验证码不正确");
+		Integer vCode = tokenService.get(mail) == null ? 0 : (int) tokenService.get(mail);
+		if(vCode.equals(0) || !vCode.equals(code))return Result.fail("验证码不正确");
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
@@ -77,7 +77,7 @@ public class UserService {
 	
 	public Result getInfo(Integer userId) {
 		User user = userDao.findOne(userId);
-		if (null != user)return Result.success("注册成功");
+		if (null != user)return Result.success(user);
 		return Result.fail("没有找到对应用户信息");
 	}
 }
