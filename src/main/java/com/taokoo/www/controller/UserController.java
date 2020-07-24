@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.taokoo.www.annotation.Authentication;
+import com.taokoo.www.annotation.CurrentUser;
+import com.taokoo.www.domain.AuthenticatedUser;
 import com.taokoo.www.domain.vo.Result;
 import com.taokoo.www.service.UserService;
 
@@ -60,5 +63,15 @@ public class UserController {
 	@PostMapping("/register")
 	public Result register(HttpServletRequest request,String username,String password,String mail,Integer code) {
 		return userService.register(username,password,mail,code);
+	}
+	
+	@ApiOperation(value = "查看用户信息")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+			@ApiImplicitParam(name = "userId", value = "被查看的用户的信息", required = true, dataType = "Integer", paramType = "query"), })
+	@PostMapping("/getInfo")
+	@Authentication
+	public Result getInfo(@CurrentUser AuthenticatedUser authenticatedUser,Integer userId) {
+		return userService.getInfo(userId);
 	}
 }
