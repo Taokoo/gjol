@@ -24,11 +24,6 @@ public class ActivityService {
 	/**
  	  * 创建活动
 	 * @Title: newActivity  
-	 * @param @param userId
-	 * @param @param teamId
-	 * @param @param theme
-	 * @param @param desc
-	 * @param @return 
 	 * @author Taokoo
 	 */
 	public Result newActivity(Integer userId,Integer teamId,String theme,String desc) {
@@ -45,9 +40,6 @@ public class ActivityService {
 	/**
 	  * 角色加入活动
 	 * @Title: joinActivity  
-	 * @param @param userRoleId
-	 * @param @param activityId
-	 * @param @return 
 	 * @author Taokoo
 	 */
 	public Result joinActivity(Integer userRoleId,Integer activityId) {
