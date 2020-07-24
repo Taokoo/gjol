@@ -32,7 +32,7 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    private String name;
+//    private String name;
     
     private Date createDate;
     
@@ -41,6 +41,8 @@ public class Activity {
     private String desc;//活动内容描述
     
     private Integer teamId;//活动所属公会id，这里手动添加
+    
+    private User leader;//发起人
     
     @OneToMany
     List<UserRole> roles;//参与角色
