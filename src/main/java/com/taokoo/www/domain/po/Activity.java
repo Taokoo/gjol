@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -38,10 +39,11 @@ public class Activity {
     
     private String theme;//主题
     
-    private String desc;//活动内容描述
+    private String descInfo;//活动内容描述
     
     private Integer teamId;//活动所属公会id，这里手动添加
     
+    @ManyToOne
     private User leader;//发起人
     
     @OneToMany

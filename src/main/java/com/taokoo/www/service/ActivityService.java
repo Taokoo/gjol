@@ -29,7 +29,7 @@ public class ActivityService {
 	public Result newActivity(Integer userId,Integer teamId,String theme,String desc) {
 		Activity at = new Activity();
 		at.setTheme(theme);
-		at.setDesc(desc);
+		at.setDescInfo(desc);
 		at.setTeamId(teamId);
 		at.setCreateDate(new Date());
 		

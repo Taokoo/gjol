@@ -11,11 +11,50 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 24/07/2020 15:07:42
+ Date: 28/07/2020 18:01:18
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for activity
+-- ----------------------------
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE `activity`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_date` datetime(0) DEFAULT NULL,
+  `desc_info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `team_id` int(11) DEFAULT NULL,
+  `theme` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `leader_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKcssq3ogjb1mve40uaslyqra0f`(`leader_id`) USING BTREE,
+  CONSTRAINT `FKcssq3ogjb1mve40uaslyqra0f` FOREIGN KEY (`leader_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for activity_roles
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_roles`;
+CREATE TABLE `activity_roles`  (
+  `activity_id` int(11) NOT NULL,
+  `roles_id` int(11) NOT NULL,
+  UNIQUE INDEX `UK_faj9y2fvx4muahgjpvx5qndeg`(`roles_id`) USING BTREE,
+  INDEX `FK16fw5jdnl2ca2ketxne6now9h`(`activity_id`) USING BTREE,
+  CONSTRAINT `FK16fw5jdnl2ca2ketxne6now9h` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK1dafhmgatd1r0kb1qooliyrbf` FOREIGN KEY (`roles_id`) REFERENCES `user_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for apply
+-- ----------------------------
+DROP TABLE IF EXISTS `apply`;
+CREATE TABLE `apply`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for big_rigion
@@ -52,6 +91,16 @@ INSERT INTO `camp` VALUES (2, '天玄教');
 INSERT INTO `camp` VALUES (3, '秦陵之盟');
 
 -- ----------------------------
+-- Table structure for invitation
+-- ----------------------------
+DROP TABLE IF EXISTS `invitation`;
+CREATE TABLE `invitation`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for login_record
 -- ----------------------------
 DROP TABLE IF EXISTS `login_record`;
@@ -83,6 +132,16 @@ CREATE TABLE `mastery`  (
 INSERT INTO `mastery` VALUES (1, '攻击');
 INSERT INTO `mastery` VALUES (2, '防御');
 INSERT INTO `mastery` VALUES (3, '治疗');
+
+-- ----------------------------
+-- Table structure for message
+-- ----------------------------
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for message_board
@@ -132,6 +191,20 @@ INSERT INTO `profession` VALUES (14, '香云绕', 7);
 INSERT INTO `profession` VALUES (15, '苍石金刀', 8);
 INSERT INTO `profession` VALUES (16, '风雨不动', 8);
 INSERT INTO `profession` VALUES (17, '贯日御风', 9);
+
+-- ----------------------------
+-- Table structure for recruit
+-- ----------------------------
+DROP TABLE IF EXISTS `recruit`;
+CREATE TABLE `recruit`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `body` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `team_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK81r0vb7tq56k9y8fnm7s4l0s0`(`team_id`) USING BTREE,
+  CONSTRAINT `FK81r0vb7tq56k9y8fnm7s4l0s0` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for region
@@ -324,13 +397,15 @@ CREATE TABLE `user`  (
   `sex` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
+  `head_portrait` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `create_time` datetime(0) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, NULL, 'one@taokoo.com', '123456', NULL, NULL, NULL, 'taokoo', NULL, NULL, NULL, NULL, 1, 1);
+INSERT INTO `user` VALUES (1, NULL, 'one@taokoo.com', '123456', NULL, NULL, NULL, 'taokoo', NULL, NULL, NULL, NULL, 1, 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user_role
@@ -351,6 +426,7 @@ CREATE TABLE `user_role`  (
   `type` int(11) DEFAULT NULL,
   `uname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `mastery_id` int(11) DEFAULT NULL,
+  `create_time` datetime(0) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK9nbt6cn7w3dcjr412vre5gcw6`(`region_id`) USING BTREE,
   INDEX `FK89mblfdcqx4n6iwjt7tew7t62`(`camp_id`) USING BTREE,
