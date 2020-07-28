@@ -74,4 +74,16 @@ public class UserController {
 	public Result getInfo(@CurrentUser AuthenticatedUser authenticatedUser,Integer userId) {
 		return userService.getInfo(userId);
 	}
+	
+	@ApiOperation(value = "用户设置头像")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+			@ApiImplicitParam(name = "headPortrait", value = "头像的base64码", required = true, dataType = "string", paramType = "query"), })
+	@PostMapping("/setHeadPortrait")
+	@Authentication
+	public Result setHeadPortrait(@CurrentUser AuthenticatedUser authenticatedUser,String headPortrait) {
+		return userService.setHeadPortrait(authenticatedUser.getUserId(), headPortrait);
+	}
+	
+	
 }

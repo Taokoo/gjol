@@ -52,6 +52,8 @@ public class User {
     
     private String signature;//签名
     
+    private String HeadPortrait;//头像
+    
     private Integer active;//在线状态 0：离线   1：在线
     
     private Integer type;//账号类型: 1:普通用户   2： vip用户  66：管理员  99：超级管理员

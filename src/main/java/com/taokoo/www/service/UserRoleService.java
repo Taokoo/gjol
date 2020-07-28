@@ -40,7 +40,6 @@ public class UserRoleService {
 	 * @Title: addRole
 	 * @author Taokoo
 	 */
-	@Transactional(rollbackFor = Exception.class)
 	public Result addRole(Integer userId, String name, Integer regionId,Integer campId,Integer professionId,Integer equipLv,Boolean isPublic,Integer type) {
 		List<UserRole> lst = roleForRegionDao.findByRegionId(regionId);
 		if(lst.size() > 0)return Result.fail("此角色已存在");

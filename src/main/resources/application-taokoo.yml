@@ -26,3 +26,5 @@ server:
   port: 8868
   contextPath: /gjol
 host-name: taokoo
+
+imgPath=C:\\Users\\EDZ\\Desktop

@@ -11,7 +11,7 @@ import com.taokoo.www.dao.mysql.UserDao;
 import com.taokoo.www.domain.po.LoginRecord;
 import com.taokoo.www.domain.po.User;
 import com.taokoo.www.domain.vo.Result;
-import com.taokoo.www.util.MailUtil;
+import com.taokoo.www.util.ImageUtil;
 import com.taokoo.www.util.VailCodeUtil;
 
 @Component
@@ -81,4 +81,22 @@ public class UserService {
 		if (null != user)return Result.success(user);
 		return Result.fail("没有找到对应用户信息");
 	}
+	
+	/**
+	  * 用户设置头像
+	 * @Title: setHeadPortrait  
+	 * @param userId
+	 * @param headPortrait 头像的base64码
+	 * @return 头像url
+	 * @author Taokoo
+	 */
+	public Result setHeadPortrait(Integer userId,String headPortrait) {
+		User user = userDao.findOne(userId);
+		if (null == user)return Result.fail("没有找到对应用户信息");
+		String imgUrl = ImageUtil.saveHeadPortrait(headPortrait,userId);
+		user.setHeadPortrait(imgUrl);
+		userDao.save(user);
+		return Result.success(imgUrl);
+	}
+	
 }
