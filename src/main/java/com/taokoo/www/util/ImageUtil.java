@@ -14,8 +14,11 @@ public class ImageUtil {
 	
 	public final static LocalDate localDate = LocalDate.now();
 	
-	@Value("${imgPath}")
+	@Value("${imgPath}")//头像保存的本地路径
 	private static String imgPath;
+	
+	@Value("${imageServerPath}")//头像的url路径
+	private static String imageServerPath;
 
 	/**
 	 * 将头像保存到图片服务器
@@ -66,10 +69,11 @@ public class ImageUtil {
 			out.flush();
 			out.close();
 			System.out.println("图片保存路径为：" + imgFilePath);
+			return imageServerPath+imgFilePath;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return "";
 	}
 	
 	public static void main(String[] args) {
