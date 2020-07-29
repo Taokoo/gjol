@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.taokoo.www.dao.mysql.RoleForCampDao;
 import com.taokoo.www.dao.mysql.RoleForProfessionDao;
