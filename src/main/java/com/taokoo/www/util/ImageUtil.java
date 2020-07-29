@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.Base64;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
 
 public class ImageUtil {
 	
@@ -14,20 +13,17 @@ public class ImageUtil {
 	
 	public final static LocalDate localDate = LocalDate.now();
 	
-	@Value("${imgPath}")//头像保存的本地路径
-	private static String imgPath;
-	
-	@Value("${imageServerPath}")//头像的url路径
-	private static String imageServerPath;
-
 	/**
 	 * 将头像保存到图片服务器
 	 * @Title: saveHeadPortrait  
-	 * @param headPortrait
+	 * @param headPortrait 头像base64编码
+	 * @param userName 用户名
+	 * @param imgPath 头像本地目录
+	 * @param imageServerPath 头像服务器目录
 	 * @return 头像URL
 	 * @author Taokoo
 	 */
-	public static String saveHeadPortrait(String headPortrait,Integer userId) {
+	public static String saveHeadPortrait(String headPortrait,String userName,String imgPath,String imageServerPath) {
 		try {
 			String dataPrix = ""; // base64格式前头
 			String data = "";// 实体部分数据
@@ -55,7 +51,7 @@ public class ImageUtil {
 			}
 			String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 			String date = localDate.plusYears(0).toString();//当前日期，年-月-日
-			String tempFileName = userId+"-"+date+"-"+uuid+suffix;
+			String tempFileName = userName+"-"+date+"-"+uuid+suffix;
 			String imgFilePath = imgPath + tempFileName;// 新生成的图片
 			byte[] b = decoder.decode(data);
 			for (int i = 0; i < b.length; ++i) {
@@ -68,16 +64,10 @@ public class ImageUtil {
 			out.write(b);
 			out.flush();
 			out.close();
-			System.out.println("图片保存路径为：" + imgFilePath);
-			return imageServerPath+imgFilePath;
+			return imageServerPath+tempFileName;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "";
-	}
-	
-	public static void main(String[] args) {
-		String s = localDate.plusYears(0).toString();
-		System.out.println(s);
 	}
 }

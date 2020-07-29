@@ -26,5 +26,4 @@ server:
   port: 8868
   contextPath: /gjol
 host-name: taokoo
-imgPath: D:\\apache-tomcat-8.5.54\\webapps\\image\\
-imageServerPath: http://127.0.0.1:8080/image/
+

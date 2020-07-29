@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,10 +79,10 @@ public class UserController {
 	@ApiOperation(value = "用户设置头像")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
-			@ApiImplicitParam(name = "headPortrait", value = "头像的base64码", required = true, dataType = "string", paramType = "query"), })
+			@ApiImplicitParam(name = "headPortrait", value = "头像的base64码（直接将base64码放在body里就好）", required = true, dataType = "string", paramType = "body"), })
 	@PostMapping("/setHeadPortrait")
 	@Authentication
-	public Result setHeadPortrait(@CurrentUser AuthenticatedUser authenticatedUser,String headPortrait) {
+	public Result setHeadPortrait(@CurrentUser AuthenticatedUser authenticatedUser,@RequestBody String headPortrait) {
 		return userService.setHeadPortrait(authenticatedUser.getUserId(), headPortrait);
 	}
 	

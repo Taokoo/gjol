@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.taokoo.www.dao.mysql.LoginRecordDao;
 import com.taokoo.www.dao.mysql.UserDao;
+import com.taokoo.www.domain.StaticConfig;
 import com.taokoo.www.domain.po.LoginRecord;
 import com.taokoo.www.domain.po.User;
 import com.taokoo.www.domain.vo.Result;
@@ -25,7 +26,10 @@ public class UserService {
 
 	@Autowired
 	private LoginRecordDao loginRecordDao;
-
+	
+	@Autowired
+	private StaticConfig staticConfig;
+	
 	public Result login(String username, String password) {
 		try {
 			List<User> lst = userDao.findByUsernameAndPassword(username, password);
@@ -93,7 +97,7 @@ public class UserService {
 	public Result setHeadPortrait(Integer userId,String headPortrait) {
 		User user = userDao.findOne(userId);
 		if (null == user)return Result.fail("没有找到对应用户信息");
-		String imgUrl = ImageUtil.saveHeadPortrait(headPortrait,userId);
+		String imgUrl = ImageUtil.saveHeadPortrait(headPortrait,user.getUsername(),staticConfig.getImgpath(),staticConfig.getImageserverpath());
 		user.setHeadPortrait(imgUrl);
 		userDao.save(user);
 		return Result.success(imgUrl);
