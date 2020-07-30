@@ -29,4 +29,5 @@ public class Message {
     private Integer id;
     
     private String value;
+
 }
