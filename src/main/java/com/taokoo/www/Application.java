@@ -11,5 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        System.out.println("古剑奇谭网络版社区服务器启动成功...");
     }
 }

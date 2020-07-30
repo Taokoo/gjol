@@ -36,8 +36,8 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("古剑奇谭玩家社区API文档")
                 .description("太华山-《水月轩》公会")
-                .contact("Taokoo")
-                .version("4.0")
+                .contact("轻筝")
+                .version("1.0")
                 .build();
     }
 }
