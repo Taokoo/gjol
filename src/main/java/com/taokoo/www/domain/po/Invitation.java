@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -29,4 +30,15 @@ public class Invitation {
     private Integer id;
     
     private String value;
+    
+    @ManyToOne
+    private UserRole userRole;//申请的用户角色
+    
+    @ManyToOne
+    private Team team;//邀请进入的固定团
+    
+    @ManyToOne
+    private UserRole beInvitedUserRole;//受邀的用户角色
+    
+    private Integer status;//状态  1：已发出邀请    2：已同意邀请     3：已拒绝邀请
 }

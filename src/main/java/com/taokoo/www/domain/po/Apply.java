@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -29,4 +30,12 @@ public class Apply {
     private Integer id;
     
     private String value;
+    
+    @ManyToOne
+    private UserRole userRole;//申请的用户角色
+    
+    @ManyToOne
+    private Recruit recruit;//申请的招募表
+    
+    private Integer status;//状态  1：已发出申请    2：已同意申请     3：已拒绝申请
 }

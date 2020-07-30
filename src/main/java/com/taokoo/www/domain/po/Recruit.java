@@ -35,4 +35,6 @@ public class Recruit {
     
     @OneToOne
     private Team team;//所属固定团
+    
+    private Integer status;//状态  1：招募中   2：关闭招募
 }
