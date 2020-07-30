@@ -1,7 +1,14 @@
 package com.taokoo.www.controller;
 
+import com.taokoo.www.annotation.Authentication;
+import com.taokoo.www.annotation.CurrentUser;
+import com.taokoo.www.domain.AuthenticatedUser;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +32,17 @@ public class RecruitController {
 
 	@Autowired
 	private RecruitService recruitService;
-	
-	public Result openRecruit() {
-		return recruitService.openRecruit();
+
+	@ApiOperation(value = "开启新招募")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+			@ApiImplicitParam(name = "userRoleId", value = "创建者的角色id", required = true, dataType = "Integer", paramType = "query"),
+			@ApiImplicitParam(name = "title", value = "招募标题", required = true, dataType = "String", paramType = "query"),
+			@ApiImplicitParam(name = "body", value = "招募内容", required = true, dataType = "String", paramType = "query"),
+	})
+	@PostMapping("/openRecruit")
+	@Authentication
+	public Result openRecruit(@CurrentUser AuthenticatedUser authenticatedUser,Integer userRoleId,String title,String body) {
+		return recruitService.openRecruit(userRoleId,title,body);
 	}
 }

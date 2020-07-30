@@ -1,10 +1,6 @@
 package com.taokoo.www.domain.po;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,9 +24,10 @@ public class Recruit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     private String title;//标题
-    
+
+    @Lob @Basic(fetch = FetchType.LAZY) @Column(columnDefinition = "text")
     private String body;//内容
     
     @OneToOne

@@ -40,8 +40,8 @@ public class UserRole {
     private Boolean isPublic;//是否公开信息（不公开则无法在广场上看到）
     
     private Boolean isLeader;//是否团长
-    
-    @JsonIgnore
+
+//    @JsonIgnore
     private Date createTime;//创建时间
     
 }
