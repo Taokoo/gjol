@@ -38,6 +38,8 @@ public class UserRole {
     private Integer type;//1：大号   2：小号
     
     private Boolean isPublic;//是否公开信息（不公开则无法在广场上看到）
+
+    private Boolean isTeamMember;//是否固定团成员
     
     private Boolean isLeader;//是否团长
 

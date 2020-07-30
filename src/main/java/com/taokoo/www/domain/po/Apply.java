@@ -29,10 +29,12 @@ public class Apply {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    private String value;
+//    private String value;
     
     @ManyToOne
     private UserRole userRole;//申请的用户角色
+
+    private String message;//申请留言
     
     @ManyToOne
     private Recruit recruit;//申请的招募表

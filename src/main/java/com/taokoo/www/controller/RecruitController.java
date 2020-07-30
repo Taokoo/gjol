@@ -45,4 +45,17 @@ public class RecruitController {
 	public Result openRecruit(@CurrentUser AuthenticatedUser authenticatedUser,Integer userRoleId,String title,String body) {
 		return recruitService.openRecruit(userRoleId,title,body);
 	}
+
+	@ApiOperation(value = "发起一个申请")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+			@ApiImplicitParam(name = "userRoleId", value = "创建者的角色id", required = true, dataType = "Integer", paramType = "query"),
+			@ApiImplicitParam(name = "recruitId", value = "招募表id", required = true, dataType = "Integer", paramType = "query"),
+			@ApiImplicitParam(name = "message", value = "申请留言", required = true, dataType = "String", paramType = "query"),
+	})
+	@PostMapping("/launchApply")
+	@Authentication
+	public Result launchApply(@CurrentUser AuthenticatedUser authenticatedUser,Integer userRoleId,Integer recruitId,String message){
+		return recruitService.launchApply(userRoleId,recruitId,message);
+	}
 }

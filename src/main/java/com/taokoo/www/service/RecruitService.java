@@ -1,9 +1,11 @@
 package com.taokoo.www.service;
 
+import com.taokoo.www.dao.mysql.ApplyDao;
 import com.taokoo.www.dao.mysql.RecruitDao;
 import com.taokoo.www.dao.mysql.RoleForTeamDao;
 import com.taokoo.www.dao.mysql.UserRoleDao;
 import com.taokoo.www.domain.AuthenticatedUser;
+import com.taokoo.www.domain.po.Apply;
 import com.taokoo.www.domain.po.Recruit;
 import com.taokoo.www.domain.po.Team;
 import com.taokoo.www.domain.po.UserRole;
@@ -26,10 +28,12 @@ public class RecruitService {
 	@Autowired
 	private RecruitDao recruitDao;
 
+	@Autowired
+	private ApplyDao applyDao;
+
 	/**
 	 * 开启一个新招募
 	 * @Title: openRecruit  
-	 * @return 
 	 * @author Taokoo
 	 */
 	public Result openRecruit(Integer userRoleId, String title, String body) {
@@ -45,5 +49,24 @@ public class RecruitService {
 		r.setTeam(teamList.get(0));
 		recruitDao.save(r);
 		return Result.success("招募开启成功");
+	}
+
+	/**
+	 * 发起一个申请
+	 * @Title: launchApply
+	 * @author Taokoo
+	 */
+	public Result launchApply(Integer userRoleId,Integer recruitId,String message){
+		Apply apply = new Apply();
+		UserRole ur = new UserRole();
+		ur.setId(userRoleId);
+		Recruit rr = new Recruit();
+		rr.setId(recruitId);
+		apply.setUserRole(ur);
+		apply.setRecruit(rr);
+		apply.setMessage(message);
+		apply.setStatus(1);//已发出申请
+		applyDao.save(apply);
+		return Result.success("已申请");
 	}
 }

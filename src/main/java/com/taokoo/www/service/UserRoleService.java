@@ -54,6 +54,8 @@ public class UserRoleService {
 		ur.setType(type);
 		ur.setIsPublic(isPublic);
 		ur.setCreateTime(new Date());
+		ur.setIsTeamMember(false);
+		ur.setIsLeader(false);
 		
 		RoleForRegion rfr = new RoleForRegion();
 		rfr.setUserRole(ur);
