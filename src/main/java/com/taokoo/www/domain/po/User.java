@@ -40,7 +40,7 @@ public class User {
     
     private Integer age;
     
-    private Integer sex;//1：男  2：女
+    private Integer sex;//1：男  2：女 6：扶她
     
     private String qq; 
     
