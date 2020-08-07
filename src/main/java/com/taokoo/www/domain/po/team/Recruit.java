@@ -1,9 +1,10 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.team;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.taokoo.www.domain.po.team.Team;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

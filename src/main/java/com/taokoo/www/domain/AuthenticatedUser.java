@@ -1,7 +1,7 @@
 package com.taokoo.www.domain;
 
 
-import com.taokoo.www.domain.po.User;
+import com.taokoo.www.domain.po.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

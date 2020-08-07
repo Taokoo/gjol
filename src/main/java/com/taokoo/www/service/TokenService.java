@@ -1,7 +1,7 @@
 package com.taokoo.www.service;
 
 import com.taokoo.www.domain.AuthenticatedUser;
-import com.taokoo.www.domain.po.User;
+import com.taokoo.www.domain.po.user.User;
 
 /**
  * 对Token进行操作的接口

@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

@@ -1,12 +1,16 @@
 package com.taokoo.www.domain.po;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.taokoo.www.domain.po.enumData.PlayType;
+import com.taokoo.www.domain.po.enumData.Sects;
+import com.taokoo.www.domain.po.enumData.Sex;
+import com.taokoo.www.domain.po.enumData.Shape;
+import com.taokoo.www.domain.po.user.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,18 +35,21 @@ public class LoveFriendRecruit {
 
     private Integer age;
 
-    private Integer sex;//1：男  2：女  3：0  4：1  5：不限
+    @ManyToOne
+    private Sex sex;//性别
 
     private String title;//标题
 
-    private String Region;//期望区服
+    private String Region;//TODO 期望区服
 
-    @OneToMany
+    @ManyToMany
     private List<Sects> SectsList;//期望门派
 
-    private Integer shape;//期望体型    1： 成男    2：成女    3：萝莉
+    @ManyToMany
+    private List<Shape> shape;//期望体型
 
-    private Integer expectSex;//1：男  2：女  3：0  4：1  5：不限
+    @ManyToOne
+    private Sex expectSex;//期望性别
 
     @OneToMany
     private List<PlayType> playTypeList;//PV?

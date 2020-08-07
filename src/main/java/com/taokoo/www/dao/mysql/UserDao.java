@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.taokoo.www.domain.po.User;
+import com.taokoo.www.domain.po.user.User;
 
 public interface UserDao extends JpaRepository<User, Integer>{
 	

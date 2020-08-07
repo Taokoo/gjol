@@ -1,15 +1,13 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.user;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.taokoo.www.domain.po.enumData.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,8 +37,9 @@ public class User {
     private String nickname;//昵称
     
     private Integer age;
-    
-    private Integer sex;//1：男  2：女 6：扶她
+
+    @ManyToOne
+    private Sex sex;
     
     private String qq; 
     
@@ -55,10 +54,12 @@ public class User {
     private String HeadPortrait;//头像
     
     private Integer active;//在线状态 0：离线   1：在线
-    
-    private Integer type;//账号类型: 1:普通用户   2： vip用户  66：管理员  99：超级管理员
-    
-    private Integer status;//账号状态 1:正常   99：封禁
+
+    @ManyToOne
+    private AccountType accountType;//账号类型
+
+    @ManyToOne
+    private AccountStatus status;//账号状态
     
     @JsonIgnore
     private Date createTime;//创建时间

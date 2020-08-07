@@ -3,10 +3,9 @@ package com.taokoo.www.service;
 import com.taokoo.www.dao.mysql.ApplyDao;
 import com.taokoo.www.dao.mysql.RecruitDao;
 import com.taokoo.www.dao.mysql.UserRoleDao;
-import com.taokoo.www.domain.po.Apply;
-import com.taokoo.www.domain.po.Recruit;
-import com.taokoo.www.domain.po.Team;
-import com.taokoo.www.domain.po.UserRole;
+import com.taokoo.www.domain.po.team.Apply;
+import com.taokoo.www.domain.po.team.Recruit;
+import com.taokoo.www.domain.po.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,12 +1,13 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.user;
 
 import java.util.Date;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.taokoo.www.domain.po.team.Team;
+import com.taokoo.www.domain.po.enumData.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,11 +36,12 @@ public class UserRole {
     
     private Boolean isPublic;//是否公开信息（不公开则无法在广场上看到）
 
-    private Boolean isTeamMember;//是否固定团成员
+    private Boolean isTeamMember;//是否固定团成员（方便搜索用的）
     
     private Boolean isLeader;//是否团长
 
-    private Integer shape;//体型    1： 成男    2：成女    3：萝莉
+    @ManyToOne
+    private Shape shape;//体型
 
     @ManyToOne
     private Camp camp;//阵营

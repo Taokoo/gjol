@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.team;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,13 +8,15 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.taokoo.www.domain.po.team.Team;
+import com.taokoo.www.domain.po.user.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @ClassName: Apply  
- * @Description: 申请表
+ * @ClassName: Invitation  
+ * @Description: 邀请表
  * @author Taokoo
  * @date 2020-7-28
  */
@@ -23,21 +25,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Apply {
+public class Invitation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-//    private String value;
+    private String value;
     
     @ManyToOne
     private UserRole userRole;//申请的用户角色
-
-    private String message;//申请留言
     
     @ManyToOne
-    private Recruit recruit;//申请的招募表
+    private Team team;//邀请进入的固定团
     
-    private Integer status;//状态  1：已发出申请    2：已同意申请     3：已拒绝申请
+    @ManyToOne
+    private UserRole beInvitedUserRole;//受邀的用户角色
+    
+    private Integer status;//状态  1：已发出邀请    2：已同意邀请     3：已拒绝邀请
 }

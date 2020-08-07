@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.team;
 
 import java.util.Date;
 
@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.taokoo.www.domain.po.user.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.taokoo.www.domain.po.UserRole;
+import com.taokoo.www.domain.po.user.UserRole;
 
 public interface UserRoleDao extends JpaRepository<UserRole, Integer>{
 

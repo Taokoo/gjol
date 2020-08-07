@@ -1,16 +1,9 @@
 package com.taokoo.www.service;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.taokoo.www.dao.mysql.UserRoleDao;
-import com.taokoo.www.domain.po.Camp;
-import com.taokoo.www.domain.po.Profession;
-import com.taokoo.www.domain.po.Region;
-import com.taokoo.www.domain.po.UserRole;
 import com.taokoo.www.domain.vo.Result;
 
 @Component

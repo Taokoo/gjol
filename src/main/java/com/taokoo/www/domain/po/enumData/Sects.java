@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.enumData;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,22 +12,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @ClassName: Message  
- * @Description: 消息
+ * @ClassName: Sects  
+ * @Description: 门派
  * @author Taokoo
- * @date 2020-7-28
+ * @date 2020-7-20
  */
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Message {
+public class Sects {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     private String value;
-
+    
+    private String color;
 }

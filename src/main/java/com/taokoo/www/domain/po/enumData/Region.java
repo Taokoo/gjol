@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.enumData;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,17 +13,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @ClassName: Invitation  
- * @Description: 邀请表
+ * @ClassName: Region  
+ * @Description: 区服
  * @author Taokoo
- * @date 2020-7-28
+ * @date 2020-7-20
  */
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Invitation {
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,13 +32,5 @@ public class Invitation {
     private String value;
     
     @ManyToOne
-    private UserRole userRole;//申请的用户角色
-    
-    @ManyToOne
-    private Team team;//邀请进入的固定团
-    
-    @ManyToOne
-    private UserRole beInvitedUserRole;//受邀的用户角色
-    
-    private Integer status;//状态  1：已发出邀请    2：已同意邀请     3：已拒绝邀请
+    private BigRigion bigRigion;
 }

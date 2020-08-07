@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.enumData;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @ClassName: Mastery  
- * @Description: 专精
+ * @ClassName: Camp  
+ * @Description: 阵营
  * @author Taokoo
  * @date 2020-7-20
  */
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Mastery {
+public class Camp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

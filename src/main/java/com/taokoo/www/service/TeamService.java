@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.taokoo.www.dao.mysql.TeamDao;
 import com.taokoo.www.dao.mysql.UserRoleDao;
-import com.taokoo.www.domain.po.Team;
-import com.taokoo.www.domain.po.UserRole;
+import com.taokoo.www.domain.po.team.Team;
+import com.taokoo.www.domain.po.user.UserRole;
 import com.taokoo.www.domain.vo.Result;
 
 @Component

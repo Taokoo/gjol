@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import com.taokoo.www.domain.AuthenticatedUser;
-import com.taokoo.www.domain.po.User;
+import com.taokoo.www.domain.po.user.User;
 import com.taokoo.www.util.Constants;
 
 /**

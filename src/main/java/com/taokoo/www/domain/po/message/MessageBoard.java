@@ -1,19 +1,24 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.message;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.taokoo.www.domain.po.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @ClassName: Camp  
- * @Description: 阵营
+ * @ClassName: MessageBoard  
+ * @Description: 留言板
  * @author Taokoo
  * @date 2020-7-20
  */
@@ -22,11 +27,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Camp {
+public class MessageBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    private String name;
+    
     private String value;
+    
+    private Date createTime;
+    
+    @OneToOne
+    @JsonIgnore
+    private User user;
 }
