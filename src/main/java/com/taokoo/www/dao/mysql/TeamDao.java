@@ -11,4 +11,5 @@ public interface TeamDao extends JpaRepository<Team, Integer> {
 	List<Team> findByName(String name);
 	
 	List<Team> findById(Integer id);
+
 }

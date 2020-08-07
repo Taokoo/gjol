@@ -2,9 +2,7 @@ package com.taokoo.www.service;
 
 import com.taokoo.www.dao.mysql.ApplyDao;
 import com.taokoo.www.dao.mysql.RecruitDao;
-import com.taokoo.www.dao.mysql.RoleForTeamDao;
 import com.taokoo.www.dao.mysql.UserRoleDao;
-import com.taokoo.www.domain.AuthenticatedUser;
 import com.taokoo.www.domain.po.Apply;
 import com.taokoo.www.domain.po.Recruit;
 import com.taokoo.www.domain.po.Team;
@@ -23,9 +21,6 @@ public class RecruitService {
 	private UserRoleDao userRoleDao;
 
 	@Autowired
-	private RoleForTeamDao roleForTeamDao;
-
-	@Autowired
 	private RecruitDao recruitDao;
 
 	@Autowired
@@ -40,13 +35,12 @@ public class RecruitService {
 		List<UserRole> userRoles = userRoleDao.findById(userRoleId);
 		if(userRoles.size() == 0)return Result.fail("没有找到对应角色");
 		if(userRoles.get(0).getIsLeader() == false)return Result.fail("非固定团团长不能开启招募");
-		List<Team> teamList = roleForTeamDao.findByUserRoleId(userRoleId);
-		if(teamList.size() == 0)return Result.fail("该角色非固定团成员");
+		UserRole ur = userRoles.get(0);
 		Recruit r = new Recruit();
 		r.setStatus(1);//招募中
 		r.setTitle(title);
 		r.setBody(body);
-		r.setTeam(teamList.get(0));
+		r.setTeam(ur.getTeam());
 		recruitDao.save(r);
 		return Result.success("招募开启成功");
 	}
