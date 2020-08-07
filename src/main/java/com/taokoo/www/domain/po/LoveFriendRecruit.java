@@ -40,6 +40,8 @@ public class LoveFriendRecruit {
     @OneToMany
     private List<Sects> SectsList;//期望门派
 
+    private Integer shape;//期望体型    1： 成男    2：成女    3：萝莉
+
     private Integer expectSex;//1：男  2：女  3：0  4：1  5：不限
 
     @OneToMany

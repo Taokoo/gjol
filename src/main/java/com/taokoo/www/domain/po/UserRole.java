@@ -42,6 +42,8 @@ public class UserRole {
     
     private Boolean isLeader;//是否团长
 
+    private Integer shape;//体型    1： 成男    2：成女    3：萝莉
+
 //    @JsonIgnore
     private Date createTime;//创建时间
     
