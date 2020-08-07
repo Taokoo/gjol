@@ -73,8 +73,9 @@ public class UserService {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setMail(mail);
-		user.setType(1);//普通用户
-		user.setStatus(1);//账号状态正常
+		//TODO
+//		user.setType(1);//普通用户
+//		user.setStatus(1);//账号状态正常
 		user.setCreateTime(new Date());
 		userDao.save(user);
 		return Result.success("注册成功");

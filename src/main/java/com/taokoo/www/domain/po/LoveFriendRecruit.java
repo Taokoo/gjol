@@ -40,13 +40,13 @@ public class LoveFriendRecruit {
 
     private String title;//标题
 
-    private String Region;//TODO 期望区服
+    private String Region;// 期望区服描述
 
     @ManyToMany
     private List<Sects> SectsList;//期望门派
 
     @ManyToMany
-    private List<Shape> shape;//期望体型
+    private List<Shape> shapeList;//期望体型
 
     @ManyToOne
     private Sex expectSex;//期望性别
