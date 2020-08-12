@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.taokoo.www.domain.po.enumData.PlayType;
@@ -14,45 +14,34 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @ClassName: LoveFriendRecruit
- * @Description: 情缘招募表
+ * @ClassName: LoveFriendRecruitVo
+ * @Description: 情缘招募表VO
  * @author Taokoo
  * @date 2020-7-20
  */
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoveFriendRecruit {
+public class LoveFriendRecruitVo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @OneToOne
-    private UserRole userRole;//发起者
+    private Integer userRoleId;//发起者
 
     private Integer age;
 
-    @ManyToOne
-    private Sex sex;//性别
+    private Integer sex;//性别ID
 
     private String title;//标题
 
     private String Region;// 期望区服描述
 
-    @ManyToMany
-    private List<Sects> SectsList;//期望门派
+    private String SectsList;//期望门派列表,多个选择用逗号分隔
 
-    @ManyToMany
-    private List<Shape> shapeList;//期望体型
+    private String shapeList;//期望体型,多个选择用逗号分隔
 
-    @ManyToOne
-    private Sex expectSex;//期望性别
+    private Integer expectSex;//期望性别
 
-    @OneToMany
-    private List<PlayType> playTypeList;//PV?
+    private String playTypeList;//PV? ,多个选择用逗号分隔
 
     private String workBeginTime;//工作日在线时间起始时间
 
@@ -68,5 +57,4 @@ public class LoveFriendRecruit {
 
     private String body;//内容描述
 
-    private Integer status;//招募状态 ： 0：关闭  1： 开启
 }
