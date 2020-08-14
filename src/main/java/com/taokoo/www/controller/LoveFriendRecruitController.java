@@ -42,7 +42,6 @@ public class LoveFriendRecruitController {
     @PostMapping("/findLoveFriend")
     @Authentication
     public Result findLoveFriend(@CurrentUser AuthenticatedUser authenticatedUser, LoveFriendRecruitVo vo) {
-        System.out.println("接收到数据");
         return loveFriendRecruitService.findLoveFriend(vo);
     }
 }
