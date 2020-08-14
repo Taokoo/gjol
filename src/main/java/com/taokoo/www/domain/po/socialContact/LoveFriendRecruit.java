@@ -1,4 +1,4 @@
-package com.taokoo.www.domain.po;
+package com.taokoo.www.domain.po.socialContact;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.taokoo.www.domain.po.enumData.PlayType;

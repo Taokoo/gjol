@@ -1,10 +1,7 @@
 package com.taokoo.www.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.taokoo.www.annotation.Authentication;
 import com.taokoo.www.annotation.CurrentUser;
@@ -64,7 +61,7 @@ public class TeamController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
 			@ApiImplicitParam(name = "teamId", value = "固定团id", required = true, dataType = "Integer", paramType = "query"), })
-	@PostMapping("/getRoleLst")
+	@GetMapping("/getRoleLst")
 	@Authentication
 	public Result getRoleLst(@CurrentUser AuthenticatedUser authenticatedUser, Integer teamId) {
 		return teamService.getRoleLst(teamId);
