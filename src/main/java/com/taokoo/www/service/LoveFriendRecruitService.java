@@ -1,8 +1,10 @@
 package com.taokoo.www.service;
 
 import com.taokoo.www.dao.mysql.LoveFriendRecruitDao;
+import com.taokoo.www.dao.mysql.PlayTypeDao;
 import com.taokoo.www.dao.mysql.SexDao;
 import com.taokoo.www.dao.mysql.UserRoleDao;
+import com.taokoo.www.domain.po.enumData.PlayType;
 import com.taokoo.www.domain.po.enumData.Sects;
 import com.taokoo.www.domain.po.enumData.Sex;
 import com.taokoo.www.domain.po.enumData.Shape;
@@ -25,6 +27,8 @@ public class LoveFriendRecruitService {
     private UserRoleDao userRoleDao;
     @Autowired
     private SexDao sexDao;
+    @Autowired
+    private PlayTypeDao playTypeDao;
 
     /**
      * @Author Taokoo
@@ -58,8 +62,24 @@ public class LoveFriendRecruitService {
             shapeLst.add(shape);
         }
         po.setShapeList(shapeLst);
+        sexLst = sexDao.findById(vo.getExpectSex());
+        if(sexLst.size() > 0)po.setExpectSex(sexLst.get(0));
+        List<PlayType> playTypeLst = new ArrayList<>();
+        String[] playTypes = vo.getPlayTypeList().split(",");
+        for(String playTypeId : playTypes){
+            PlayType py = new PlayType();
+            py.setId(Integer.valueOf(playTypeId));
+            playTypeLst.add(py);
+        }
+        po.setPlayTypeList(playTypeLst);
+        po.setWorkBeginTime(vo.getWorkBeginTime());
+        po.setWorkEndTime(vo.getWorkEndTime());
+        po.setHolidayBeginTime(vo.getHolidayBeginTime());
+        po.setHolidayEndTime(vo.getHolidayEndTime());
+        po.setIsThree(vo.getIsThree());
+        po.setIntroduce(vo.getIntroduce());
+        po.setStatus(1);
 
-        //TODO 更新及状态处理待添加
         loveFriendRecruitDao.save(po);
         return Result.success("添加成功");
     }

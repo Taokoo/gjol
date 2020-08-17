@@ -56,11 +56,11 @@ public class LoveFriendRecruit {
 
     private String workBeginTime;//工作日在线时间起始时间
 
-    private String workEndTime;//工作日在线时间时间
+    private String workEndTime;//工作日在线时间结束时间
 
     private String holidayBeginTime;//假期在线时间起始时间
 
-    private String holidayEndTime;//假期在线时间时间
+    private String holidayEndTime;//假期在线时间结束时间
 
     private Boolean isThree;//是否奔现（是否涉三）
 
