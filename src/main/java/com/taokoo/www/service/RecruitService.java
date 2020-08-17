@@ -41,7 +41,24 @@ public class RecruitService {
 		r.setBody(body);
 		r.setTeam(ur.getTeam());
 		recruitDao.save(r);
-		return Result.success("招募开启成功");
+		return Result.success("招募已开启");
+	}
+
+	/**
+	 * 关闭招募
+	 * @Title: closeRecruit
+	 * @author Taokoo
+	 */
+	public Result closeRecruit(Integer recruitId){
+		List<Recruit> lst = recruitDao.findById(recruitId);
+		if(lst.size() > 0) {
+			Recruit po = lst.get(0);
+			po.setStatus(2);
+			recruitDao.save(po);
+			return Result.success("招募已关闭");
+		}
+
+		return Result.fail("招募关闭失败");
 	}
 
 	/**
