@@ -32,10 +32,9 @@ public class LoveFriendRecruitService {
 
     /**
      * @Author Taokoo
-     * @Description // 发起情缘招募
+     * @Description 发起情缘招募
      **/
-
-    public Result findLoveFriend(LoveFriendRecruitVo vo){
+    public Result addLoveFriend(LoveFriendRecruitVo vo){
         LoveFriendRecruit po = new LoveFriendRecruit();
         List<UserRole> urLst = userRoleDao.findById(vo.getUserRoleId());
         if(urLst.size() == 0)return Result.fail("不存在此角色");
@@ -83,4 +82,30 @@ public class LoveFriendRecruitService {
         loveFriendRecruitDao.save(po);
         return Result.success("添加成功");
     }
+
+    /**
+     * @Author Taokoo
+     * @Description 根据角色获取以前的招募
+     **/
+    public Result findLoveFriend(Integer userRoleId){
+        List<LoveFriendRecruit> lst = loveFriendRecruitDao.findByUserRoleId(userRoleId);
+        if(lst.size() > 0)return Result.success(lst.get(0));
+        return Result.fail("此角色未发起过招募");
+    }
+
+    /**
+     * @Author Taokoo
+     * @Description 关闭某个招募
+     **/
+    public Result closeLoveFriend(Integer id){
+        List<LoveFriendRecruit> lst = loveFriendRecruitDao.findById(id);
+        if(lst.size() > 0){
+            LoveFriendRecruit lfr = lst.get(0);
+            lfr.setStatus(0);
+            loveFriendRecruitDao.save(lfr);
+            return Result.success("招募关闭成功");
+        }
+        return Result.fail("招募关闭失败");
+    }
+
 }

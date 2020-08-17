@@ -11,10 +11,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName: LoveFriendRecruitController
@@ -35,13 +32,32 @@ public class LoveFriendRecruitController {
     @ApiOperation(value = "发起情缘招募")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
-            @ApiImplicitParam(name = "userRole", value = "角色id", required = true, dataType = "Integer", paramType = "query"),
-            @ApiImplicitParam(name = "shapeList", value = "期望体型", required = true, dataType = "Integer", paramType = "query"),
-            @ApiImplicitParam(name = "SectsList", value = "期望门派", required = true, dataType = "Integer", paramType = "query"),
+    })
+    @PostMapping("/addLoveFriend")
+    @Authentication
+    public Result addLoveFriend(@CurrentUser AuthenticatedUser authenticatedUser, LoveFriendRecruitVo vo) {
+        return loveFriendRecruitService.addLoveFriend(vo);
+    }
+
+    @ApiOperation(value = "根据角色获取以前的招募信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = "userRoleId", value = "角色id", required = true, dataType = "Integer", paramType = "query"),
     })
     @PostMapping("/findLoveFriend")
     @Authentication
-    public Result findLoveFriend(@CurrentUser AuthenticatedUser authenticatedUser, LoveFriendRecruitVo vo) {
-        return loveFriendRecruitService.findLoveFriend(vo);
+    public Result findLoveFriend(@CurrentUser AuthenticatedUser authenticatedUser, Integer userRoleId) {
+        return loveFriendRecruitService.findLoveFriend(userRoleId);
+    }
+
+    @ApiOperation(value = "关闭某个招募")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "authentication", value = "token", required = true, dataType = "string", paramType = "header"),
+            @ApiImplicitParam(name = "id", value = "招募id", required = true, dataType = "Integer", paramType = "query"),
+    })
+    @GetMapping("/closeLoveFriend")
+    @Authentication
+    public Result closeLoveFriend(@CurrentUser AuthenticatedUser authenticatedUser, Integer id) {
+        return loveFriendRecruitService.closeLoveFriend(id);
     }
 }
