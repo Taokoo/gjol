@@ -57,7 +57,6 @@ public class RecruitService {
 			recruitDao.save(po);
 			return Result.success("招募已关闭");
 		}
-
 		return Result.fail("招募关闭失败");
 	}
 
