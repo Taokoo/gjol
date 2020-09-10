@@ -7,7 +7,7 @@ import com.taokoo.www.dao.mysql.UserRoleDao;
 import com.taokoo.www.domain.vo.Result;
 
 @Component
-public class UserRoleService {
+public class  UserRoleService {
 	
 	@Autowired
 	private UserRoleDao userRoleDao;
