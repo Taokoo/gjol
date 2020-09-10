@@ -1,10 +1,17 @@
 package com.taokoo.www.service;
 
+import com.taokoo.www.domain.po.enumData.Camp;
+import com.taokoo.www.domain.po.enumData.Profession;
+import com.taokoo.www.domain.po.enumData.Region;
+import com.taokoo.www.domain.po.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.taokoo.www.dao.mysql.UserRoleDao;
 import com.taokoo.www.domain.vo.Result;
+
+import java.util.Date;
+import java.util.List;
 
 @Component
 public class  UserRoleService {
@@ -51,7 +58,7 @@ public class  UserRoleService {
 //		roleForRegionDao.save(rfr);//区服
 //		roleForCampDao.save(rfc);//阵营
 //		roleForProfessionDao.save(rfp);//职业
-		
+//
 		return Result.success("添加成功");
 	}
 }

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 /**
- * 这是一个刷新每日公告的计时器
+ * 这是一个每日中午12点刷新每日公告的计时器
  * 2020-09-10
  */
 
@@ -22,14 +22,16 @@ import java.io.IOException;
 @Component
 public class AnnouncementTask {
 
-    @Scheduled(cron = "0 0 0,13,18,21 * * ?")
+    private final static  String url="http://gjol.wangyuan.com/info/notice.shtml";
+
+    @Scheduled(cron ="0 0 12 * * ?" )
     public void handle(){
-            String url="http://gjol.wangyuan.com/info/notice.shtml";
             Document document = null;
             try {
                 document = Jsoup.connect(url).get();
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("该网页捕捉错误,网址错误");
+                return;
             }
             Elements list_box = document.getElementsByClass("list_box");
             Elements a = list_box.get(0).getElementsByTag("li");
@@ -43,7 +45,6 @@ public class AnnouncementTask {
                 StringBuffer title = new StringBuffer(text[0]);
                 title.append(text[1]); // 将内容拼成一段
                 String date=text[2];
-                System.out.println(title.toString());
                 AnnouncementService service = new AnnouncementService();
                 service.addAnnouncement(null,content,title.toString(),date, String.valueOf(document));
             }
