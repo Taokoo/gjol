@@ -23,7 +23,7 @@ import java.io.IOException;
 public class AnnouncementTask {
 
     @Scheduled(cron = "0 0 0,13,18,21 * * ?")
-    public void refresh(){
+    public void handle(){
             String url="http://gjol.wangyuan.com/info/notice.shtml";
             Document document = null;
             try {
