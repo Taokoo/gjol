@@ -13,9 +13,8 @@ public class AnnouncementService {
     @Autowired
     private AnnouncementDao announcementDao;
 
-    public void addAnnouncement(Integer id, String content, String title, String date, String document){
+    public void addAnnouncement(String content, String title, String date, String document){
         Announcement announcement = new Announcement();
-        announcement.setId(id);
         announcement.setContent(content);
         announcement.setTitle(title);
         announcement.setDate(date);

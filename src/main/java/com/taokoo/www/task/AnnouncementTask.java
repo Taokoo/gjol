@@ -24,7 +24,8 @@ public class AnnouncementTask {
 
     private final static  String url="http://gjol.wangyuan.com/info/notice.shtml";
 
-    @Scheduled(cron ="0 0 12 * * ?" )
+//    @Scheduled(cron ="0 0 8,12,23 * * ?" )
+    @Scheduled(cron="0/5 * *  * * ? ")
     public void handle(){
             Document document = null;
             try {
@@ -45,8 +46,9 @@ public class AnnouncementTask {
                 StringBuffer title = new StringBuffer(text[0]);
                 title.append(text[1]); // 将内容拼成一段
                 String date=text[2];
+                System.out.println(title);
                 AnnouncementService service = new AnnouncementService();
-                service.addAnnouncement(null,content,title.toString(),date, String.valueOf(document));
+                service.addAnnouncement(content,title.toString(),date, String.valueOf(document));
             }
         }
 }
