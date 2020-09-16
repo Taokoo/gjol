@@ -10,6 +10,6 @@ public class testTask1 {
 
     @Scheduled(cron = "*/5 * * * * ?")
     public void handle(){
-       System.out.println("定时输出叫伯恩");
+//       System.out.println("定时输出叫伯恩");
     }
 }
